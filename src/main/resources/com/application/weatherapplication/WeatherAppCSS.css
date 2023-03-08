@@ -1,0 +1,23 @@
+.root
+{
+    menu-button-color: #999;
+    menu-button-hover: #bbb;
+}
+
+
+.menu-button
+{
+    -fx-font-size:15px;
+    -fx-background-color:menu-button-color;
+}
+.menu-button:hover
+{
+    -fx-font-size:16px;
+    -fx-background-color:menu-button-hover;
+}
+
+
+.main-menu
+{
+    -fx-background-color: #555;
+}

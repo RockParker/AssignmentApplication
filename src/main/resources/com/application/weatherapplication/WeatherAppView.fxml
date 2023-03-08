@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<?import javafx.scene.layout.RowConstraints?>
+<!-- This is the design class for the main window of the application-->
+<GridPane alignment="CENTER" xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.application.weatherapplication.WeatherAppController"
+        stylesheets="@WeatherAppCSS.css">
+
+    <!-- These constraints determine the "zones" of the application -->
+    <columnConstraints>
+        <ColumnConstraints percentWidth="15"/>
+        <ColumnConstraints percentWidth="60"/>
+        <ColumnConstraints percentWidth="25"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints percentHeight="10"/>
+        <RowConstraints percentHeight="90"/>
+    </rowConstraints>
+
+
+    <!-- This is where the content of the window starts-->
+
+    <VBox styleClass="main-menu" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2" >
+        <Button styleClass="menu-button" id="btnWeatherView" text="This is text" />
+        <Button styleClass="menu-button" id="btnCalendarView" text="this is a button 2"/>
+    </VBox>
+
+</GridPane>
