@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.application.weatherapplication.WeatherViewController"
+          stylesheets="@WeatherViewCSS.css"
+          prefHeight="400.0" prefWidth="600.0">
+
+    <columnConstraints>
+        <!-- Goes: main content, secondary content-->
+        <ColumnConstraints percentWidth="80"/>
+        <ColumnConstraints percentWidth="20"/>
+    </columnConstraints>
+
+    <rowConstraints>
+        <!-- Goes: top buffer, main icon height, week view height, bottom buffer -->
+        <RowConstraints percentHeight="10"/>
+        <RowConstraints percentHeight="50"/>
+        <RowConstraints percentHeight="30"/>
+        <RowConstraints percentHeight="10"/>
+    </rowConstraints>
+
+    <Label fx:id="LocationLabel">This is the Weather View</Label>
+
+    <ImageView fx:id="MainIcon" GridPane.columnIndex="0" GridPane.rowIndex="1" preserveRatio="true">
+
+    </ImageView>
+
+
+</GridPane>
