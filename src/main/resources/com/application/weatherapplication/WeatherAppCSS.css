@@ -1,23 +1,48 @@
 .root
 {
-    menu-button-color: #999;
-    menu-button-hover: #bbb;
-}
+    /*Here are all the colors that may be used in more than one place,
+    and so we want them to be accessible to the whole of the design portion.
+    The overall theme is to have a lighter colour*/
 
+    /* -- Here are the colors for the main button control -- */
+    menu-button-host: #ccdbfd;
+    menu-button-color: #abc4ff;
+    menu-button-hover: #bbb;
+    menu-button-click: #fff;
+
+    /* -- Here be monsters -- */
+    view-host-background: #ddddff;
+
+
+}
 
 .menu-button
 {
     -fx-font-size:15px;
     -fx-background-color:menu-button-color;
+
 }
 .menu-button:hover
 {
     -fx-font-size:16px;
     -fx-background-color:menu-button-hover;
+    -fx-cursor:Hand;
 }
-
+.menu-button:pressed
+{
+    -fx-font-size:16px;
+    -fx-background-color:menu-button-click;
+}
 
 .main-menu
 {
-    -fx-background-color: #555;
+    -fx-background-color:menu-button-host;
+    -fx-spacing:10px;
+    -fx-padding:10px;
+}
+
+.ViewHostStyle
+{
+    -fx-padding:30px;
+    -fx-background-color:view-host-background;
 }
