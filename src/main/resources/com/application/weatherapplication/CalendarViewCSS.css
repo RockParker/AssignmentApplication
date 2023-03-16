@@ -1,0 +1,58 @@
+
+.calendar-button
+{
+    -fx-background-color: #111;
+    -fx-border-color: #333;
+    -fx-border-width:5px;
+
+    -fx-font-size:13;
+    -fx-text-fill: #FFF;
+
+
+    -fx-min-width:100px;
+    -fx-min-height:100px;
+
+
+    -fx-pref-width:8em;
+    -fx-pref-height:8em;
+
+}
+
+.calendar-button:hover
+{
+    -fx-background-color: #222;
+}
+
+.calendar-button:pressed
+{
+    -fx-background-color: #333;
+}
+
+.calendar-label
+{
+    -fx-font-size:13;
+    -fx-pref-width:8em;
+}
+
+.month-button-host
+{
+    -fx-font-size:13;
+    -fx-max-width:8em;
+
+    -fx-spacing:5px;
+
+}
+
+.month-buttons
+{
+    -fx-min-width:80px;
+    -fx-max-height:40px;
+}
+.month-buttons:hover
+{
+
+}
+.month-buttons:pressed
+{
+
+}

@@ -37,16 +37,17 @@
 
         <Button styleClass="menu-button" onAction="#WeatherClick" fx:id="weatherSelector"
                 prefWidth="${buttonHost.width}" prefHeight="${weatherSelector.width}"
-                text="This is text" />
+                text="Weather" />
 
         <Button styleClass="menu-button" onAction="#CalendarClick" fx:id="calendarSelector"
                 prefWidth="${buttonHost.width}" prefHeight="${calendarSelector.width}"
-                text="this is a button 2"/>
+                text="Calendar"/>
 
 
     </VBox>
 
-    <BorderPane fx:id="ViewHost" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowSpan="2">
+    <BorderPane fx:id="ViewHost" GridPane.columnIndex="1"  GridPane.rowSpan="2" GridPane.fillWidth="true"
+            styleClass="content-pane">
         <!-- This is filler because without it there is an error that causes the application to not load.
         has something to do with the pane not having a root or something...-->
     </BorderPane>
