@@ -3,11 +3,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.application.weatherapplication.CalendarViewController"
-            prefHeight="400.0" prefWidth="600.0">
+<GridPane prefHeight="400.0" prefWidth="600.0" stylesheets="@CalendarViewCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.weatherapplication.CalendarViewController">
 
-    <Label text="This is the calendar View"/>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="5" />
+        <ColumnConstraints percentWidth="70" />
+        <ColumnConstraints percentWidth="25" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="5" />
+        <RowConstraints percentHeight="90" />
+        <RowConstraints percentHeight="5" />
+    </rowConstraints>
+
+    <VBox fx:id="vCalendarHost" alignment="CENTER" spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <HBox alignment="CENTER" styleClass="month-button-host">
+            <!-- These buttons are the different months -->
+            <Button fx:id="previousMonth" styleClass="month-buttons" onAction="#getPreviousMonth" text="previous"/>
+            <Button fx:id="currentMonth" styleClass="month-buttons"/>
+            <Button fx:id="nextMonth" styleClass="month-buttons" onAction="#getNextMonth" text="next"/>
+        </HBox>
+        <HBox spacing="5" alignment="CENTER">
+            <Label styleClass="calendar-label" text="Sunday" />
+            <Label styleClass="calendar-label" text="Monday" />
+            <Label styleClass="calendar-label" text="Tuesday" />
+            <Label styleClass="calendar-label" text="Wednesday" />
+            <Label styleClass="calendar-label" text="Thursday" />
+            <Label styleClass="calendar-label" text="Friday" />
+            <Label styleClass="calendar-label" text="Saturday" />
+        </HBox>
+
+        <VBox fx:id="vCalendar" alignment="CENTER" spacing="5"
+                styleClass="month-button-host" fillWidth="true">
+
+        </VBox>
+    </VBox>
 
 </GridPane>

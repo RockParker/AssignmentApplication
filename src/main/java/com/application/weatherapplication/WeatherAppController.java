@@ -29,25 +29,31 @@ public class WeatherAppController
         {
             weatherView = FXMLLoader.load(getClass().getResource("WeatherViewView.fxml"));
             calendarView = FXMLLoader.load(getClass().getResource("CalendarViewView.fxml"));
-            ViewHost.setCenter(weatherView);
         }
 
         catch (Exception e)
         {
             throw new RuntimeException(e);
         }
+
+        setContent(weatherView);
     }
 
+    private void setContent(Pane pane)
+    {
+        ViewHost.setCenter(null);
+        ViewHost.setCenter(pane);
+    }
 
     @FXML
     protected void WeatherClick()
     {
-        ViewHost.setCenter(weatherView);
+        setContent(weatherView);
     }
 
     @FXML
     protected void CalendarClick()
     {
-        ViewHost.setCenter(calendarView);
+        setContent(calendarView);
     }
 }

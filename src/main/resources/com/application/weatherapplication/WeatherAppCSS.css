@@ -39,10 +39,5 @@
     -fx-background-color:menu-button-host;
     -fx-spacing:10px;
     -fx-padding:10px;
-}
-
-.ViewHostStyle
-{
-    -fx-padding:30px;
-    -fx-background-color:view-host-background;
+    -fx-max-width:130px;
 }
