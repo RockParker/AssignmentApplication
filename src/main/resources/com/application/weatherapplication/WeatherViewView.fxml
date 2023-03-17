@@ -1,35 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="com.application.weatherapplication.WeatherViewController"
-          stylesheets="@WeatherViewCSS.css"
-          prefHeight="400.0" prefWidth="600.0">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-    <columnConstraints>
-        <!-- Goes: main content, secondary content-->
-        <ColumnConstraints percentWidth="80"/>
-        <ColumnConstraints percentWidth="20"/>
-    </columnConstraints>
-
-    <rowConstraints>
-        <!-- Goes: top buffer, main icon height, week view height, bottom buffer -->
-        <RowConstraints percentHeight="10"/>
-        <RowConstraints percentHeight="50"/>
-        <RowConstraints percentHeight="30"/>
-        <RowConstraints percentHeight="10"/>
-    </rowConstraints>
-
-    <Label fx:id="LocationLabel">This is the Weather View</Label>
-
-    <ImageView fx:id="MainIcon" GridPane.columnIndex="0" GridPane.rowIndex="1" preserveRatio="true">
-
-    </ImageView>
-
-
-</GridPane>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="Citypicture" fitHeight="400.0" fitWidth="607.0" layoutX="-3.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../../../../Users/Emman/Downloads/wallpaperflare.com_wallpaper%20(16).jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="cityname" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="28.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" text="OTTAWA CITY" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="23.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="currentweatherlogo" fitHeight="78.0" fitWidth="87.0" layoutX="263.0" layoutY="12.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="localtime" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="30.0" layoutY="39.0" opacity="0.69" prefHeight="12.0" prefWidth="135.0" text="07:10:09 AM" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="287.0" layoutX="6.0" layoutY="113.0" opacity="0.8" strokeType="INSIDE" width="590.0">
+         <fill>
+            <RadialGradient centerX="0.5132158674332539" centerY="0.5151515368259314" radius="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.15610136091709137" green="0.31474724411964417" blue="0.46315789222717285" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+         <stroke>
+            <RadialGradient centerX="0.5132158674332539" centerY="0.5151515368259314">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.15610136091709137" green="0.31474724411964417" blue="0.46315789222717285" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </stroke>
+      </Rectangle>
+      <GridPane alignment="CENTER" layoutX="5.0" layoutY="109.0" prefHeight="96.0" prefWidth="592.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="49.99999084472656" minHeight="10.0" prefHeight="37.93330688476563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="37.666673278808595" minHeight="10.0" prefHeight="27.80001220703125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="37.200003051757804" minHeight="10.0" prefHeight="31.799999999999997" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="37.200003051757804" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="time01" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="07" textAlignment="CENTER" />
+            <Label fx:id="time02" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="08" textAlignment="CENTER" GridPane.columnIndex="1" />
+            <Label fx:id="time03" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="09" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label fx:id="time04" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="10" textAlignment="CENTER" GridPane.columnIndex="3" />
+            <Label fx:id="time05" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="11" textAlignment="CENTER" GridPane.columnIndex="4" />
+            <Label fx:id="time06" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="12" textAlignment="CENTER" GridPane.columnIndex="5" />
+            <Label fx:id="time07" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="01" textAlignment="CENTER" GridPane.columnIndex="6" />
+            <Label fx:id="time08" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="02" textAlignment="CENTER" GridPane.columnIndex="7" />
+            <Label fx:id="time09" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="03" textAlignment="CENTER" GridPane.columnIndex="8" />
+            <Label fx:id="time10" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="04" textAlignment="CENTER" GridPane.columnIndex="9" />
+            <Label fx:id="temp01" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="12°" textAlignment="CENTER" GridPane.rowIndex="2" />
+            <Label fx:id="temp02" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="13°" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="temp03" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="14°" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="temp04" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="14°" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="temp05" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="14°" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Label fx:id="temp06" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="12°" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label fx:id="temp07" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="12°" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <Label fx:id="temp08" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="12°" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <Label fx:id="temp09" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="11°" textAlignment="CENTER" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <Label fx:id="temp10" alignment="CENTER" prefHeight="18.0" prefWidth="58.0" text="11°" textAlignment="CENTER" GridPane.columnIndex="9" GridPane.rowIndex="2" />
+            <ImageView fx:id="conditionimage1" fitHeight="32.0" fitWidth="42.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage2" fitHeight="32.0" fitWidth="43.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage3" fitHeight="32.0" fitWidth="42.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage4" fitHeight="32.0" fitWidth="42.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage5" fitHeight="46.0" fitWidth="41.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/4052984.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage6" fitHeight="45.0" fitWidth="39.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/4052984.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage7" fitHeight="45.0" fitWidth="39.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="6" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/4052984.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage8" fitHeight="32.0" fitWidth="42.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="7" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage9" fitHeight="32.0" fitWidth="42.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="8" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="conditionimage10" fitHeight="32.0" fitWidth="42.0" nodeOrientation="INHERIT" pickOnBounds="true" GridPane.columnIndex="9" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../../../../../../../../Users/Emman/OneDrive/Desktop/Edu/Level%2002/Programming/App%20UI/Icons/sun-icon-31.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </GridPane.margin>
+            </ImageView>
+         </children>
+      </GridPane>
+      <Separator layoutX="6.0" layoutY="226.0" prefHeight="5.0" prefWidth="590.0" />
+      <Label fx:id="dayforecast" layoutX="50.0" layoutY="205.0" text="DAY FORECAST" textFill="#000000">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="Today" layoutX="50.0" layoutY="230.0" text="Today" textFill="#000000" />
+      <Label fx:id="day01" layoutX="50.0" layoutY="260.0" text="Tuesday" textFill="#000000" />
+      <Label fx:id="day02" layoutX="50.0" layoutY="290.0" text="Wednesday" textFill="#000000" />
+      <Label fx:id="day03" layoutX="50.0" layoutY="320.0" text="Thursday" textFill="#000000" />
+      <Label fx:id="day04" layoutX="50.0" layoutY="350.0" text="Friday" textFill="#000000" />
+      <Label fx:id="day05" layoutX="50.0" layoutY="380.0" text="Saturday" textFill="#000000" />
+      <Label fx:id="Hightemperature" layoutX="328.0" layoutY="205.0" text="H:" textFill="#000000" >
+           <font>
+              <Font name="System Bold" size="12.0" />
+           </font></Label>
+      <Label fx:id="lowtemperature" layoutX="503.0" layoutY="205.0" text="L:" textFill="#000000" >
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font></Label>
+      <Label fx:id="hightemp01" layoutX="325.0" layoutY="230.0" text="14°" textFill="#000000" />
+      <Label fx:id="hightemp02" layoutX="325.0" layoutY="260.0" text="16°" textFill="#000000" />
+      <Label fx:id="hightemp03" layoutX="325.0" layoutY="290.0" text="16°" textFill="#000000" />
+      <Label fx:id="hightemp04" layoutX="325.0" layoutY="320.0" text="17°" textFill="#000000" />
+      <Label fx:id="hightemp05" layoutX="325.0" layoutY="350.0" text="19°" textFill="#000000" />
+      <Label fx:id="hightemp06" layoutX="325.0" layoutY="380.0" text="19°" textFill="#000000" />
+      <Label fx:id="lowtemp01" layoutX="500.0" layoutY="230.0" text="11°" textFill="#000000" />
+      <Label fx:id="lowtemp02" layoutX="500.0" layoutY="260.0" text="14°" textFill="#000000" />
+      <Label fx:id="lowtemp03" layoutX="500.0" layoutY="290.0" text="11°" textFill="#000000" />
+      <Label fx:id="lowtemp04" layoutX="500.0" layoutY="320.0" text="10°" textFill="#000000" />
+      <Label fx:id="lowtemp05" layoutX="500.0" layoutY="350.0" text="11°" textFill="#000000" />
+      <Label fx:id="lowtemp06" layoutX="500.0" layoutY="380.0" text="13°" textFill="#000000" />
+   </children>
+</Pane>
