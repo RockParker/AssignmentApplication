@@ -17,6 +17,8 @@ public class WeatherAppController
     private Label MenuLabel;
     @FXML
     private Button weatherSelector, calendarSelector;
+    @FXML
+    private VBox buttonHost;
 
     @FXML
     private BorderPane ViewHost;

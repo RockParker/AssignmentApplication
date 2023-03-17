@@ -19,6 +19,10 @@ public class CalendarViewController
     private int daysAcross = 7, weeksDown = 6;
     @FXML
     private VBox vCalendar;
+    @FXML
+    private VBox vCalendarHost;
+    @FXML
+    private VBox Tasks;
 
     @FXML
     private Button previousMonth, nextMonth, currentMonth;
