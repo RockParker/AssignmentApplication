@@ -34,12 +34,13 @@
         </HBox>
 
         <VBox fx:id="vCalendar" alignment="CENTER"
-                styleClass="month-button-host" fillWidth="true">
+                styleClass="month-button-host">
 
         </VBox>
     </VBox>
 
-    <VBox fx:id="Tasks" >
+    <VBox fx:id="Tasks" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3"
+            styleClass="task-vbox">
 
     </VBox>
 
