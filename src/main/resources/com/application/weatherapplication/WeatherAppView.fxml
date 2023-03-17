@@ -46,7 +46,8 @@
 
     </VBox>
 
-    <BorderPane fx:id="ViewHost" GridPane.columnIndex="1"  GridPane.rowSpan="2" GridPane.fillWidth="true"
+    <BorderPane fx:id="ViewHost" GridPane.columnIndex="1"  GridPane.rowSpan="2" GridPane.columnSpan="2"
+                GridPane.fillWidth="true"
             styleClass="content-pane">
         <!-- This is filler because without it there is an error that causes the application to not load.
         has something to do with the pane not having a root or something...-->

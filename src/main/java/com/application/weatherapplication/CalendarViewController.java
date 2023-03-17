@@ -1,5 +1,7 @@
 package com.application.weatherapplication;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Camera;
 import javafx.scene.control.Button;
@@ -30,18 +32,28 @@ public class CalendarViewController
         generateCalendar();
     }
 
+    /**
+     * This section will contain the
+     */
+
+
+
+
+    private void calendarButtonClick()
+    {
+
+        //do stuff here
+        //this will display the information for the tasks on that day?
+        // or maybe will just scroll the window to that task. and the window will just always show a certain number of tasks?
+    }
+
+    /**
+     * Everything Below here is for the calendar, to make it work
+     */
     @FXML
     protected void getPreviousMonth()
     {
-        if(cal.get(Calendar.MONTH) == 0)
-        {
-            cal.roll(Calendar.YEAR, false);
-            cal.set(Calendar.MONTH, 11);
-        }
-        else
-        {
-            cal.roll(Calendar.MONTH, false);
-        }
+        cal.add(Calendar.MONTH, -1);
 
         generateCalendar();
     }
@@ -49,15 +61,7 @@ public class CalendarViewController
     @FXML
     protected void getNextMonth()
     {
-        if(cal.get(Calendar.MONTH) == 11)
-        {
-            cal.roll(Calendar.YEAR, true);
-            cal.set(Calendar.MONTH, 0);
-        }
-        else
-        {
-            cal.roll(Calendar.MONTH, true);
-        }
+        cal.add(Calendar.MONTH, 1);
 
         generateCalendar();
     }
@@ -69,22 +73,20 @@ public class CalendarViewController
     {
         vCalendar.getChildren().clear();
 
-        currentMonth.setText(String.valueOf(cal.get(Calendar.MONTH)));
+        currentMonth.setText( String.valueOf(cal.get(Calendar.YEAR))+" / "+String.valueOf(cal.get(Calendar.MONTH)+1));
 
         /**
          * this part gets the previous month, and its number of days
          */
 
-        //cal.add(Calendar.MONTH, -1);
-        cal.roll(Calendar.MONTH, false);
+        cal.add(Calendar.MONTH, -1);
         var prevMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         /**
          * sets the month back to the current month, then gets the number of days in this month
          */
 
-        //cal.add(Calendar.MONTH, 1);
-        cal.roll(Calendar.MONTH, true);
+        cal.add(Calendar.MONTH, 1);
         var currentMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 
@@ -105,6 +107,7 @@ public class CalendarViewController
         var calCurrentMonth = cal.get(Calendar.MONTH);
 
         int day = 1;
+        boolean pastDate = false;
         ArrayList<Button> buttons = new ArrayList<Button>();
         for(int i = 1; i <= (7*6)+1; i++)
         {
@@ -112,12 +115,23 @@ public class CalendarViewController
             //id should be YearMonthDay
             Button b = new Button();
             b.getStyleClass().add("calendar-button");
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    calendarButtonClick();
+                }
+            });
+
+            if(pastDate)
+            {
+                b.getStyleClass().add("out-of-range-button");
+            }
             buttons.add(b);
             //this is for the buttons that are in the previous month
             if(i <= offset)
             {
                 b.setText(String.valueOf(prevMonthDays - (offset - i)));
-
+                b.getStyleClass().add("out-of-range-button");
                 if(calCurrentMonth == 0)
                 {
                     //will be the previous year, the last month, and the current day
@@ -139,13 +153,15 @@ public class CalendarViewController
             if(day > currentMonthDays)
             {
                 day = 1;
+                pastDate= true;
                 cal.add(Calendar.MONTH, 1);
             }
         }
-        cal.roll(Calendar.MONTH, false);
+        cal.add(Calendar.MONTH, -1);
 
         int counter = 0;
         HBox box = new HBox();
+        box.getStyleClass().add("calendar-hbox");
         for ( Button b : buttons)
         {
             if(counter == 0)
@@ -160,8 +176,6 @@ public class CalendarViewController
             {
                 counter = 0;
             }
-
         }
     }
-
 }

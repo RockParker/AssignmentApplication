@@ -1,32 +1,44 @@
 
 .calendar-button
 {
-    -fx-background-color: #111;
+    -fx-background-color: #000;
     -fx-border-color: #333;
-    -fx-border-width:5px;
+    -fx-border-width: 2px;
 
     -fx-font-size:13;
     -fx-text-fill: #FFF;
 
 
-    -fx-min-width:100px;
-    -fx-min-height:100px;
+    -fx-pref-width:90px;
+    -fx-pref-height:90px;
 
 
-    -fx-pref-width:8em;
-    -fx-pref-height:8em;
+    -fx-min-width:8em;
+    -fx-min-height:8em;
 
+
+}
+
+.calendar-hbox
+{
 }
 
 .calendar-button:hover
 {
     -fx-background-color: #222;
+    -fx-border-color: #FFF;
 }
 
 .calendar-button:pressed
 {
     -fx-background-color: #333;
 }
+
+.out-of-range-button
+{
+    -fx-background-color: #222;
+}
+
 
 .calendar-label
 {
@@ -38,8 +50,6 @@
 {
     -fx-font-size:13;
     -fx-max-width:8em;
-
-    -fx-spacing:5px;
 
 }
 
@@ -55,4 +65,10 @@
 .month-buttons:pressed
 {
 
+}
+
+
+.task-vbox
+{
+    -fx-background-color:#ccc;
 }
