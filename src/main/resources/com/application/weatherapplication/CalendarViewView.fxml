@@ -33,10 +33,14 @@
             <Label styleClass="calendar-label" text="Saturday" />
         </HBox>
 
-        <VBox fx:id="vCalendar" alignment="CENTER" spacing="5"
+        <VBox fx:id="vCalendar" alignment="CENTER"
                 styleClass="month-button-host" fillWidth="true">
 
         </VBox>
+    </VBox>
+
+    <VBox fx:id="Tasks" >
+
     </VBox>
 
 </GridPane>
