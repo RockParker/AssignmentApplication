@@ -17,11 +17,6 @@ public class WeatherViewController
     ImageView MainIcon;
 
 
-    /**
-     * this will hold the information of the weather data.
-     * We can use this to fill our view with information
-     */
-    private Object dataObject = WeatherApplication.getDataObject();
 
     @FXML
     public void initialize()
@@ -43,12 +38,7 @@ public class WeatherViewController
 
         //here, based on the condition, we
         //will set the desired image to be displayed in the image view
-        switch (condition)
-        {
-            case "":
-            {
-                break;
-            }
+        if (condition.equals("")) {
         }
 
         view.setImage(image);

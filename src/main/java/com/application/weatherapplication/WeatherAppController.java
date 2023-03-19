@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * This class is the controller class for the design aspect of the window
@@ -17,6 +18,8 @@ public class WeatherAppController
     private Label MenuLabel;
     @FXML
     private Button weatherSelector, calendarSelector;
+    @FXML
+    private VBox buttonHost;
 
     @FXML
     private BorderPane ViewHost;

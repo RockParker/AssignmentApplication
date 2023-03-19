@@ -1,21 +1,22 @@
 package com.application.weatherapplication;
 
+import com.application.dataobjects.Forecast;
+import com.application.api.DataConversion;
+import com.application.api.Querying;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class WeatherApplication extends Application {
 
     private TrayIcon icon;
+    private Forecast forecast;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,16 +34,19 @@ public class WeatherApplication extends Application {
         stage.show();
 
         //this makes sure that the tray icon is deleted when the window closes
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent windowEvent) {
-                var tray = SystemTray.getSystemTray();
-                tray.remove(icon);
-            }
+        stage.setOnCloseRequest(windowEvent -> {
+            var tray = SystemTray.getSystemTray();
+            tray.remove(icon);
         });
 
         //uses the controller class to load the border pane with the "index" view
         controller.loadBorderPane();
+
+
+
+        //making sure that the information loads
+        this.forecast = getDataObject();
+        System.out.println(forecast);
     }
 
     private void addIconTray()
@@ -67,25 +71,15 @@ public class WeatherApplication extends Application {
 
         }
         catch(Exception e)
-        {}
+        { e.printStackTrace();}
 
         icon = trayIcon;
     }
 
-    private ActionListener closer = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            System.exit(0);
-        }
-    };
+    private final ActionListener closer = e -> System.exit(0);
 
-    private ActionListener focus = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
+    private final ActionListener focus = e -> {
 
-        }
     };
     public static void main(String[] args) {
         launch();
@@ -95,8 +89,24 @@ public class WeatherApplication extends Application {
     /**
      * In the future, this will not be Object
      */
-    public static Object getDataObject()
+    public static Forecast getDataObject()
     {
-        return null;
+
+        var qu = Querying.getWeatherInformation(Querying.QueryType.FORECAST_24HR);
+
+        return DataConversion.interpretData(qu);
+    }
+
+
+    /*
+    * Getters and setters, beware
+    */
+
+    public Forecast getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(Forecast forecast) {
+        this.forecast = forecast;
     }
 }
