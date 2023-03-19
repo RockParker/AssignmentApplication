@@ -15,8 +15,6 @@
 
     -fx-min-width:8em;
     -fx-min-height:8em;
-
-
 }
 
 .calendar-hbox
@@ -50,7 +48,6 @@
 {
     -fx-font-size:13;
     -fx-max-width:8em;
-
 }
 
 .month-buttons
