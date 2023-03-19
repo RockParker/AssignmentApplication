@@ -1,6 +1,6 @@
 package com.application.api;
 
-import com.application.DataObjects.*;
+import com.application.dataobjects.*;
 import javafx.scene.control.Alert;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,18 +10,17 @@ import java.util.ArrayList;
 
 public class DataConversion
 {
-    /**
-     * All of the queries can be interpereted in much the same way.
-     * They all will have: Location, Current, forecast{forecastday[hour{}]}
-     *
-     * this means that all the processing can be exactly the same for all of them!!
+    /*
+      All the queries can be interpreted in much the same way.
+      They all will have: Location, Current, forecast{forecastday[hour{}]}
+      this means that all the processing can be exactly the same for all of them!!
      */
 
     /**
      * this method acts as the organizer of actions.
      * it won't do much of the heavy lifting, but it makes sure each step
      * happens
-     * @param queryString
+     * @param queryString the result from querying the api
      */
     public static Forecast interpretData(String queryString)
     {
@@ -72,16 +71,14 @@ public class DataConversion
         // from current, we want basically a full hour object
         var current = (JSONObject) root.get("current");
 
-        var currentObj = createCurrent(current);
-
-        return currentObj;
+        return createCurrent(current);
 
     }
 
     /**
      * Takes the root object and fetches all the days that are forecasted in the response
-     * @param root
-     * @return
+     * @param root the base json object
+     * @return returns a multidayforcast object
      */
     private static MultiDayForecast getForecastInfo(JSONObject root)
     {
@@ -114,8 +111,8 @@ public class DataConversion
 
     /**
      * Takes the forecastday json object, and converts it into a single day forecast object
-     * @param forecastDay
-     * @return
+     * @param forecastDay takes the json object that represents the forecast day
+     * @return returns the day forcast
      */
     private static DayForecast createDayForecast(JSONObject forecastDay)
     {
@@ -161,8 +158,8 @@ public class DataConversion
 
     /**
      * takes the json array of hours
-     * @param hourArray
-     * @return
+     * @param hourArray takes the json objecy which represents the hours in a day
+     * @return returns a list of hour data objects
      */
     private static ArrayList<HourForecast> createDayArray(JSONArray hourArray)
     {
@@ -242,9 +239,8 @@ public class DataConversion
 
     /**
      * takes the condition object from the json file, it converts it to two strings
-     * @param condition
-     * @return
-     * {index 0: text (sunndy, cloudy, etc.) , index 1: iconURL}
+     * @param condition takes the json object that represents the condition
+     * @return returns {index 0: text (sunndy, cloudy, etc.) , index 1: iconURL}
      */
     private static String[] getCondition(JSONObject condition)
     {

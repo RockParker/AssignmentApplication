@@ -1,4 +1,4 @@
-package com.application.DataObjects;
+package com.application.dataobjects;
 
 public class DayAverage
 {
@@ -15,7 +15,7 @@ public class DayAverage
     public DayAverage ()
     {}
 
-    private DayAverage(String maxtemp_c, String mintemp_c, String avgtemp_c, String maxwind_kph,
+    public DayAverage(String maxtemp_c, String mintemp_c, String avgtemp_c, String maxwind_kph,
                             String totalprecip_mm, String totalsnow_cm, String avghumdity,
                             String condition, String iconURL)
     {

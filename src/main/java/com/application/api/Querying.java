@@ -15,12 +15,11 @@ public class Querying
     /**
      * Attempting to use auto:ip to make the api figure out where the device is
      */
-    private static final String currentQuery = baseUrl +"current.json?key="+ API_KEY +"&q=auto:ip";
 
     private static final String forecastQuery_24hr = baseUrl + "forecast.json?key=" + API_KEY + "&q=auto:ip&days=1";
     private static final String forecastQuery_Week = baseUrl + "forecast.json?key=" + API_KEY + "&q=auto:ip&days=7";
 
-    public static enum QueryType
+    public enum QueryType
     {
         CURRENT, FORECAST_24HR, FORECAST_WEEK
     }
@@ -33,24 +32,16 @@ public class Querying
 
         switch (qType)
         {
-            case CURRENT:
-            {
-               query = forecastQuery_24hr;
-            }
-
-            case FORECAST_24HR:
-            {
-                query = forecastQuery_24hr;
-            }
-
-            case FORECAST_WEEK:
+            case FORECAST_WEEK, CURRENT:
             {
                 query = forecastQuery_Week;
+                break;
             }
 
             default:
             {
                 query = forecastQuery_24hr;
+                break;
             }
         }
 

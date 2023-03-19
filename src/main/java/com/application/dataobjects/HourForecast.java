@@ -1,4 +1,4 @@
-package com.application.DataObjects;
+package com.application.dataobjects;
 
 public class HourForecast
 {
@@ -22,7 +22,7 @@ public class HourForecast
         this.humidity = humidity;
         this.feelslike_c = feelslike_c;
     }
-    public HourForecast(){};
+    public HourForecast(){}
 
     @Override
     public String toString()
@@ -66,7 +66,7 @@ public class HourForecast
 
     public boolean getIsDay()
     {
-        if(is_day == "1")
+        if(is_day.equals("1"))
         {
             return Boolean.TRUE;
         }

@@ -5,13 +5,12 @@ TODO:
  - Create the Weather View
    ~ Add the main icon
    ~ Add the hourly icons
-   ~ Add the day information (windspeed, humidity, etc)
+   ~ Add the day information (windspeed, humidity, etc.)
    ~ Make the UI pretty maybe
    
  - Create the Weather View Controller
    ~ Add loading the information from the main class
-   ~ Add the ability to load images
-   ~ load images into the respective positions
+   ~ Add the ability to load images into the respective positions
    ~ Display the information
    ~ Add the MultiDay forecast to the right half of the view
 
@@ -20,5 +19,5 @@ TODO:
    ~ Add the general layout of the month
    ~ Add the list of tasks to the right side
  - Create the Calendar View Controller
-   ~ Add numbers to the day buttons, making sure they line up with the correct day. (eg. the 1st of the month can be on a wednesday)
+   ~ Add numbers to the day buttons, making sure they line up with the correct day. (e.g. the 1st of the month can be on a wednesday)
  

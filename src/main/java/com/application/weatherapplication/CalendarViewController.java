@@ -3,7 +3,6 @@ package com.application.weatherapplication;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Camera;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,7 +15,8 @@ import java.util.Calendar;
 public class CalendarViewController
 {
 
-    private int daysAcross = 7, weeksDown = 6;
+    private final int daysAcross = 7;
+    private final int weeksDown = 6;
     @FXML
     private VBox vCalendar;
     @FXML
@@ -33,14 +33,11 @@ public class CalendarViewController
     public void initialize()
     {
         cal = Calendar.getInstance();
+
+        currentDay = cal.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+
         generateCalendar();
     }
-
-    /**
-     * This section will contain the
-     */
-
-
 
 
     private void calendarButtonClick()
@@ -51,9 +48,6 @@ public class CalendarViewController
         // or maybe will just scroll the window to that task. and the window will just always show a certain number of tasks?
     }
 
-    /**
-     * Everything Below here is for the calendar, to make it work
-     */
     @FXML
     protected void getPreviousMonth()
     {
@@ -71,31 +65,31 @@ public class CalendarViewController
     }
 
     ///may be worth generating the whole year at once, and then just setting the
-    ///children of the VBox to the 7 HBox starting from the 1st of the month..
+    ///children of the VBox to the 7 HBox starting from the 1st of the month.
 
     private void generateCalendar()
     {
         vCalendar.getChildren().clear();
 
-        currentMonth.setText( String.valueOf(cal.get(Calendar.YEAR))+" / "+String.valueOf(cal.get(Calendar.MONTH)+1));
+        currentMonth.setText(cal.get(Calendar.YEAR) +" / "+ (cal.get(Calendar.MONTH) + 1));
 
-        /**
-         * this part gets the previous month, and its number of days
+        /*
+          this part gets the previous month, and its number of days
          */
 
         cal.add(Calendar.MONTH, -1);
         var prevMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        /**
-         * sets the month back to the current month, then gets the number of days in this month
+        /*
+          sets the month back to the current month, then gets the number of days in this month
          */
 
         cal.add(Calendar.MONTH, 1);
         var currentMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
 
-        /**
-         * gets the number of days to represent from the previous month, before starting this month
+        /*
+          gets the number of days to represent from the previous month, before starting this month
          */
         var currentDay = cal.get(Calendar.DAY_OF_MONTH);
         var weekday = cal.get(Calendar.DAY_OF_WEEK);
@@ -112,19 +106,14 @@ public class CalendarViewController
 
         int day = 1;
         boolean pastDate = false;
-        ArrayList<Button> buttons = new ArrayList<Button>();
-        for(int i = 1; i <= (7*6)+1; i++)
+        var buttons = new ArrayList<Button>();
+        for(int i = 1; i <= (daysAcross*weeksDown)+1; i++)
         {
             //set all the "universal" attributes here
             //id should be YearMonthDay
             Button b = new Button();
             b.getStyleClass().add("calendar-button");
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    calendarButtonClick();
-                }
-            });
+            b.setOnAction(actionEvent -> calendarButtonClick());
 
             if(pastDate)
             {
@@ -139,18 +128,18 @@ public class CalendarViewController
                 if(calCurrentMonth == 0)
                 {
                     //will be the previous year, the last month, and the current day
-                    b.setId(String.valueOf(currentYear-1) + String.valueOf(11) + b.getText());
+                    b.setId(String.valueOf(currentYear-1) + 11 + b.getText());
                 }
                 else
                 {
-                    b.setId(String.valueOf(currentYear) + String.valueOf(calCurrentMonth-1) + b.getText());
+                    b.setId(String.valueOf(currentYear) + (calCurrentMonth - 1) + b.getText());
                 }
                 continue;
             }
 
 
             b.setText(String.valueOf(day));
-            b.setId(String.valueOf(currentYear) + String.valueOf(calCurrentMonth) + String.valueOf(day));
+            b.setId(String.valueOf(currentYear) + calCurrentMonth + day);
             day++;
 
 

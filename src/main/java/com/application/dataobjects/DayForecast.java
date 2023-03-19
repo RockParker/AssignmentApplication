@@ -1,8 +1,6 @@
-package com.application.DataObjects;
+package com.application.dataobjects;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DayForecast
 {
@@ -54,9 +52,7 @@ public class DayForecast
 
         for(HourForecast hour: hours)
         {
-            ret+= hour.toString();
-
-            ret+="\n";
+            ret += hour.toString() + "\n";
         }
 
         return ret;
