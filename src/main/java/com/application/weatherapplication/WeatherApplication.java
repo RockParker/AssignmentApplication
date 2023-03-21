@@ -46,7 +46,7 @@ public class WeatherApplication extends Application {
 
         //making sure that the information loads
         this.forecast = getDataObject();
-        //System.out.println(forecast);
+       // System.out.println(forecast);
 
     }
 

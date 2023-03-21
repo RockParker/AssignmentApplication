@@ -8,15 +8,17 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+
 import java.awt.*;
 import java.io.File;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
-public class WeatherViewController implements IDataProvider
-{
+public class WeatherViewController implements IDataProvider {
 
     @FXML
-    private Label cityname;
+    private Label cityname,localtime;
 
     @FXML
     ImageView MainIcon;
@@ -32,53 +34,52 @@ public class WeatherViewController implements IDataProvider
     @FXML
     private ImageView conditionimage6, conditionimage7, conditionimage8, conditionimage9, conditionimage10;
 
-
+    @FXML
+    private Label time01, time02, time03, time04, time05, time06, time07, time08, time09, time10;
+    @FXML
+    private Label temp01, temp02, temp03, temp04, temp05, temp06, temp07, temp08, temp09, temp10;
+    @FXML
+    private Label Today, day01, day02, day03;
+    @FXML
+    private Label hightemp01, hightemp02, hightemp03, hightemp04;
+    @FXML
+    private Label lowtemp01, lowtemp02, lowtemp03, lowtemp04;
     private ImageView[] conditionImages;
+    private Label[] temps, times, weekdays, hightemps, lowtemps;
 
 
     @FXML
-    public void initialize()
-    {
+    public void initialize() {
         //cityname.setText("Changed The Icon in the controller class");
 
     }
 
-    private void SetIcon(String condition, ImageView view)
-    {
-        File newFile = new File("Images/default_icon-2.jpg");
-        //var imageUrl = WeatherViewController.class.getResource("Images/default_icon.png").toString();
-        Image image = new Image(newFile.toURI().toString(), true);
-        //System.out.println(imageUrl);
-
-
-
-        //here, based on the condition, we
-        //will set the desired image to be displayed in the image view
-        if (condition.equals("")) {
-        }
-
-        view.setImage(image);
-    }
-
 
     @Override
-    public void update(Forecast forecast)
-    {
+    public void update(Forecast forecast) {
 
-        conditionImages =new ImageView[]
+        conditionImages = new ImageView[]
                 {conditionimage1, conditionimage2, conditionimage3,
                         conditionimage4, conditionimage5, conditionimage6,
                         conditionimage7, conditionimage8, conditionimage9, conditionimage10};
 
-
+        temps = new Label[]
+                {temp01, temp02, temp03, temp04, temp05, temp06, temp07, temp08, temp09, temp10};
+        times = new Label[]
+                {time01, time02, time03, time04, time05, time06, time07, time08, time09, time10};
+        weekdays = new Label[]
+                {Today, day01, day02, day03};
+        hightemps = new Label[]
+                {hightemp01, hightemp02, hightemp03, hightemp04};
+        lowtemps = new Label[]
+                {lowtemp01, lowtemp02, lowtemp03, lowtemp04};
         //do stuff with the forecast
         this.forecast = forecast;
-        this.cityname.setText("WORKED");
+        localtime.setText("Update:" +forecast.getCurrent().getTime());
 
-        if(forecast != null)
-        {
+        if (forecast != null) {
             var url = forecast.getCurrent().getIconURL();
-            var temp = this.getClass().getResource("WeatherIcons"+url);
+            var temp = this.getClass().getResource("WeatherIcons" + url);
             currentweatherlogo.setImage(new Image(temp.toString()));
         }
 
@@ -88,54 +89,73 @@ public class WeatherViewController implements IDataProvider
         var hour = LocalDateTime.now().getHour();
 
 
-        for(int i = 0; i < 10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
+            var hourObject = todayHours.get(hour);
             var url = todayHours.get(hour).getIconURL();
-            var temp = this.getClass().getResource("WeatherIcons"+url);
+            var temp = this.getClass().getResource("WeatherIcons" + url);
             conditionImages[i].setImage(new Image(temp.toString()));
             hour++;
+            temps[i].setText(hourObject.getTemp_c() + "°C");
+            times[i].setText(hourObject.getTime());
 
-            if(hour == 23)
-            {
+            if (hour == 24) {
                 todayHours = days.get(1).getHours();
                 hour = 0;
             }
 
         }
+        //set weekday, set lowtemp, set hightemp.
 
-        /*
-        var url = todayHours.get(hour).getIconURL();
-        var temp = this.getClass().getResource("WeatherIcons"+url);
-        conditionimage1.setImage(new Image(temp.toString()));
-        hour++;
-
-
-        url = todayHours.get(hour).getIconURL();
-        temp = this.getClass().getResource("WeatherIcons"+url);
-        conditionimage2.setImage(new Image(temp.toString()));
-        hour++;
-
-        url = todayHours.get(hour).getIconURL();
-        temp = this.getClass().getResource("WeatherIcons"+url);
-        conditionimage3.setImage(new Image(temp.toString()));
-        hour++;
-
-        url = todayHours.get(hour).getIconURL();
-        temp = this.getClass().getResource("WeatherIcons"+url);
-        conditionimage4.setImage(new Image(temp.toString()));
-        hour++;
-
-        url = todayHours.get(hour).getIconURL();
-        temp = this.getClass().getResource("WeatherIcons"+url);
-        conditionimage5.setImage(new Image(temp.toString()));
-        hour++;
-
-        url = todayHours.get(hour).getIconURL();
-        temp = this.getClass().getResource("WeatherIcons"+url);
-        conditionimage6.setImage(new Image(temp.toString()));*/
+        var weekday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        for (int i = 0; i < 3; i++) {
+            hightemps[i].setText(days.get(i).getAverage().getMaxtemp_c());
+            lowtemps[i].setText(days.get(i).getAverage().getMintemp_c());
+            if (i != 0) {
+                weekdays[i].setText(getWeekday(weekday));
 
 
+                if (weekday == 8) {
+                    weekday = 1;
+                }
+
+            }
+            weekday++;
+        }
 
     }
+        private String getWeekday ( int num){
+            String ret = "";
+            switch (num) {
+                case 1: {
+                    ret = "Sunday";
+                    break;
+                }
+                case 2: {
+                    ret = "Monday";
+                    break;
+                }
+                case 3: {
+                    ret = "Tuesday";
+                    break;
+                }
+                case 4: {
+                    ret = "Wednesday";
+                    break;
+                }
+                case 5: {
+                    ret = "Thursday";
+                    break;
+                }
+                case 6: {
+                    ret = "Friday";
+                    break;
+                }
+                case 7: {
+                    ret = "Saturday";
+                    break;
+                }
+            }
+            return ret;
+        }
 
 }

@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.weatherapplication.WeatherViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.weatherapplication.WeatherViewController">
    <children>
       <ImageView fx:id="Citypicture" fitHeight="400.0" fitWidth="607.0" layoutX="-3.0" pickOnBounds="true">
          <image>
@@ -31,7 +23,7 @@
       <ImageView fx:id="currentweatherlogo" fitHeight="78.0" fitWidth="87.0" layoutX="263.0" layoutY="12.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
 
       </ImageView>
-      <Label fx:id="localtime" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="30.0" layoutY="39.0" opacity="0.69" prefHeight="12.0" prefWidth="135.0" text="07:10:09 AM" textFill="WHITE">
+      <Label fx:id="localtime" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="30.0" layoutY="39.0" opacity="0.69" prefHeight="22.0" prefWidth="228.0" text="07:10:09 AM" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="18.0" />
          </font>
@@ -180,28 +172,28 @@
       <Label fx:id="Today" layoutX="50.0" layoutY="230.0" text="Today" textFill="#000000" />
       <Label fx:id="day01" layoutX="50.0" layoutY="260.0" text="Tuesday" textFill="#000000" />
       <Label fx:id="day02" layoutX="50.0" layoutY="290.0" text="Wednesday" textFill="#000000" />
-      <Label fx:id="day03" layoutX="50.0" layoutY="320.0" text="Thursday" textFill="#000000" />
-      <Label fx:id="day04" layoutX="50.0" layoutY="350.0" text="Friday" textFill="#000000" />
-      <Label fx:id="day05" layoutX="50.0" layoutY="380.0" text="Saturday" textFill="#000000" />
-      <Label fx:id="Hightemperature" layoutX="328.0" layoutY="205.0" text="H:" textFill="#000000" >
+      <Label fx:id="day03" layoutX="50.0" layoutY="320.0" text="N/A" textFill="#000000" />
+      <Label fx:id="day04" layoutX="50.0" layoutY="350.0" text="N/A" textFill="#000000" />
+      <Label fx:id="day05" layoutX="50.0" layoutY="380.0" text="N/A" textFill="#000000" />
+      <Label fx:id="Hightemperature" layoutX="328.0" layoutY="205.0" text="H:" textFill="#000000">
            <font>
               <Font name="System Bold" size="12.0" />
            </font></Label>
-      <Label fx:id="lowtemperature" layoutX="503.0" layoutY="205.0" text="L:" textFill="#000000" >
+      <Label fx:id="lowtemperature" layoutX="503.0" layoutY="205.0" text="L:" textFill="#000000">
       <font>
          <Font name="System Bold" size="12.0" />
       </font></Label>
       <Label fx:id="hightemp01" layoutX="325.0" layoutY="230.0" text="14°" textFill="#000000" />
       <Label fx:id="hightemp02" layoutX="325.0" layoutY="260.0" text="16°" textFill="#000000" />
       <Label fx:id="hightemp03" layoutX="325.0" layoutY="290.0" text="16°" textFill="#000000" />
-      <Label fx:id="hightemp04" layoutX="325.0" layoutY="320.0" text="17°" textFill="#000000" />
-      <Label fx:id="hightemp05" layoutX="325.0" layoutY="350.0" text="19°" textFill="#000000" />
-      <Label fx:id="hightemp06" layoutX="325.0" layoutY="380.0" text="19°" textFill="#000000" />
+      <Label fx:id="hightemp04" layoutX="325.0" layoutY="320.0" text="N/A" textFill="#000000" />
+      <Label fx:id="hightemp05" layoutX="325.0" layoutY="350.0" text="N/A" textFill="#000000" />
+      <Label fx:id="hightemp06" layoutX="325.0" layoutY="380.0" text="NA" textFill="#000000" />
       <Label fx:id="lowtemp01" layoutX="500.0" layoutY="230.0" text="11°" textFill="#000000" />
       <Label fx:id="lowtemp02" layoutX="500.0" layoutY="260.0" text="14°" textFill="#000000" />
       <Label fx:id="lowtemp03" layoutX="500.0" layoutY="290.0" text="11°" textFill="#000000" />
-      <Label fx:id="lowtemp04" layoutX="500.0" layoutY="320.0" text="10°" textFill="#000000" />
-      <Label fx:id="lowtemp05" layoutX="500.0" layoutY="350.0" text="11°" textFill="#000000" />
-      <Label fx:id="lowtemp06" layoutX="500.0" layoutY="380.0" text="13°" textFill="#000000" />
+      <Label fx:id="lowtemp04" layoutX="500.0" layoutY="320.0" text="N/A" textFill="#000000" />
+      <Label fx:id="lowtemp05" layoutX="500.0" layoutY="350.0" text="N/A" textFill="#000000" />
+      <Label fx:id="lowtemp06" layoutX="500.0" layoutY="380.0" text="N/A" textFill="#000000" />
    </children>
 </Pane>
