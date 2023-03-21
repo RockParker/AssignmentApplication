@@ -1,5 +1,9 @@
 package com.application.dataobjects;
 
+/**
+ * Objects of this type hold information that is an average across the day
+ * So instead of being hourly, this holds a general idea of what to expect
+ */
 public class DayAverage
 {
     private String maxtemp_c;
@@ -30,6 +34,26 @@ public class DayAverage
         this.condition = condition;
         this.iconURL = iconURL;
     }
+
+
+    @Override
+    public String toString()
+    {
+        String ret = "";
+
+        ret+="Max Temp: "+ maxtemp_c+"\n";
+        ret+="Min Temp: "+ mintemp_c+"\n";
+        ret+="Avg Temp: "+ avgtemp_c+"\n";
+        ret+="Max Wind: "+ maxwind_kph+"\n";
+        ret+="Total Precip: "+ totalprecip_mm+"\n";
+        ret+="Total Snow: "+ totalsnow_cm+"\n";
+        ret+="Avg Humidity: "+ avghumdity+"\n";
+        ret+="Condition: "+ condition+"\n";
+        ret+="IconURL: "+ iconURL+"\n";
+
+        return ret;
+    }
+
 
     public String getMaxtemp_c() {
         return maxtemp_c;

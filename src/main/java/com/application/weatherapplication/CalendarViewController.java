@@ -96,9 +96,9 @@ public class CalendarViewController
 
         var offset = weekday-(currentDay % 7);
 
-        if(offset == -1)
+        if(offset < 1)
         {
-            offset = 6;
+            offset += 7;
         }
 
         var currentYear = cal.get(Calendar.YEAR);

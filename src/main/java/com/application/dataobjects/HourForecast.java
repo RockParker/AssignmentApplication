@@ -1,5 +1,11 @@
 package com.application.dataobjects;
 
+/**
+ * This data object holds all the information relevant to any hour that the api gives us.
+ *
+ * since it will return us hourly information for 24 hours x 3 days. We are holding each hour for that period
+ * in an hour object.
+ */
 public class HourForecast
 {
     private String date, time, temp_c, is_day;
@@ -29,16 +35,16 @@ public class HourForecast
     {
         String ret = "";
 
-        ret += date+"\n";
-        ret += time+"\n";
-        ret += temp_c+"\n";
-        ret += is_day+"\n";
-        ret += condition+"\n";
-        ret += icon+"\n";
-        ret += wind_kph+"\n";
-        ret += precip_mm+"\n";
-        ret += humidity+"\n";
-        ret += feelslike_c+"\n";
+        ret += "Date: "+date+"\n";
+        ret += "Time: "+time+"\n";
+        ret += "Temp: "+temp_c+"\n";
+        ret += "isDay: "+is_day+"\n";
+        ret += "Condition: "+condition+"\n";
+        ret += "IconURL: "+icon+"\n";
+        ret += "Wind: "+wind_kph+"\n";
+        ret += "Precipitation: "+precip_mm+"\n";
+        ret += "Humidity: "+humidity+"\n";
+        ret += "Feels Like: "+feelslike_c+"\n";
 
         return ret;
     }

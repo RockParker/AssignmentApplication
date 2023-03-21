@@ -2,6 +2,10 @@ package com.application.dataobjects;
 
 import java.util.ArrayList;
 
+/**
+ * This class holds a list of days, each day holds its own hours
+ */
+
 public class MultiDayForecast
 {
     private ArrayList<DayForecast> days;

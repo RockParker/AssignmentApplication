@@ -1,5 +1,13 @@
 package com.application.dataobjects;
 
+
+/**
+ * This class is the main object that holds all
+ * the information returned from the api call.
+ *
+ * This object follows the data structure that the api follows,
+ * so there is a decent amount of nesting
+ */
 public class Forecast
 {
     //location fields
@@ -77,9 +85,9 @@ public class Forecast
         ret+="date: " + date + "\n";
         ret+="time: " + time + "\n";
 
-        ret+="Current: " + current + "\n";
+        ret+="Current: \n" + current + "\n";
 
-        ret+="Forecast: " + forecast + "\n";
+        ret+="Forecast: \n" + forecast + "\n";
 
 
         return ret;

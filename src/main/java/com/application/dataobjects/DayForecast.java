@@ -2,6 +2,12 @@ package com.application.dataobjects;
 
 import java.util.ArrayList;
 
+/**
+ * This class is used to organize the hourly information into discrete packets.
+ * While naming by the day adds verbosity to the code, it makes the overall product easier to read
+ *
+ * It also stores a day average object. That object is used to store the averages for the day... surprise!
+ */
 public class DayForecast
 {
     private ArrayList<HourForecast> hours;

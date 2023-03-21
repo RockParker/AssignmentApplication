@@ -1,4 +1,8 @@
 package com.application.weatherapplication;
+import com.application.api.DataConversion;
+import com.application.api.Querying;
+import com.application.dataobjects.Forecast;
+import com.application.dataobjects.IDataProvider;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -26,20 +30,34 @@ public class WeatherAppController
 
     private Pane weatherView, calendarView;
 
+    private IDataProvider weatherViewController, CalendarViewController;
+
+    private Forecast forecast;
+
+
     public void loadBorderPane()
     {
         try
         {
-            weatherView = FXMLLoader.load(getClass().getResource("WeatherViewView.fxml"));
+            var loader = new FXMLLoader(getClass().getResource("WeatherViewView.fxml"));
+            weatherView = loader.load();
+            weatherViewController = loader.getController();
             calendarView = FXMLLoader.load(getClass().getResource("CalendarViewView.fxml"));
+
+
+            update(weatherViewController);
+
+
         }
 
         catch (Exception e)
         {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
+
         setContent(weatherView);
+
     }
 
     private void setContent(Pane pane)
@@ -52,11 +70,23 @@ public class WeatherAppController
     protected void WeatherClick()
     {
         setContent(weatherView);
+        update(weatherViewController);
     }
 
     @FXML
     protected void CalendarClick()
     {
         setContent(calendarView);
+    }
+
+    protected void update(IDataProvider entity)
+    {
+        if(entity == null)
+            return;
+
+
+        forecast = DataConversion.interpretData(Querying.getWeatherInformation(Querying.QueryType.FORECAST_WEEK));
+
+        entity.update(forecast);
     }
 }

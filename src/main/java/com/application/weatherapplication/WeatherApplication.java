@@ -3,6 +3,7 @@ package com.application.weatherapplication;
 import com.application.dataobjects.Forecast;
 import com.application.api.DataConversion;
 import com.application.api.Querying;
+import com.application.dataobjects.IDataProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,7 +28,6 @@ public class WeatherApplication extends Application {
         //gets the instance of the controller class
         Pane p = fxmlLoader.load();
         WeatherAppController controller = fxmlLoader.getController();
-
         Scene scene = new Scene(p, 1280, 800);
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -46,7 +46,8 @@ public class WeatherApplication extends Application {
 
         //making sure that the information loads
         this.forecast = getDataObject();
-        System.out.println(forecast);
+        //System.out.println(forecast);
+
     }
 
     private void addIconTray()
@@ -99,14 +100,7 @@ public class WeatherApplication extends Application {
 
 
     /*
-    * Getters and setters, beware
+    * Data Management of the Weather information
     */
 
-    public Forecast getForecast() {
-        return forecast;
-    }
-
-    public void setForecast(Forecast forecast) {
-        this.forecast = forecast;
-    }
 }
