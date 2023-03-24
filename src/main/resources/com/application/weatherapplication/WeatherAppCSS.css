@@ -36,8 +36,12 @@
 
 .main-menu
 {
-    -fx-background-color:menu-button-host;
+    -fx-background-color:linear-gradient(#2b5876,#4e4376);
     -fx-spacing:10px;
     -fx-padding:10px;
     -fx-max-width:130px;
+}
+.content-pane
+{
+-fx-background-color:linear-gradient(#2b5876,#4e4376);
 }

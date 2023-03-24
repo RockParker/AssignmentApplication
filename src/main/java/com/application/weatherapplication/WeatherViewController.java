@@ -113,13 +113,11 @@ public class WeatherViewController implements IDataProvider {
             if (i != 0) {
                 weekdays[i].setText(getWeekday(weekday));
 
-
-                if (weekday == 8) {
-                    weekday = 1;
-                }
-
             }
             weekday++;
+            if (weekday == 8) {
+                weekday = 1;
+            }
         }
 
     }
