@@ -3,11 +3,17 @@ package com.application.weatherapplication;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -24,9 +30,11 @@ public class CalendarViewController
     @FXML
     private VBox Tasks;
 
+    private Label current;
+
     @FXML
     private Button previousMonth, nextMonth, currentMonth;
-    private int currentDay;
+    private int currentDay, numberOfTasks = 0;
 
     private Calendar cal;
 
@@ -47,6 +55,47 @@ public class CalendarViewController
         //this will display the information for the tasks on that day?
         // or maybe will just scroll the window to that task. and the window will just always show a certain number of tasks?
     }
+
+
+    @FXML
+    protected void newTaskClick()
+    {
+        var lbl = new Label("Task Added");
+        lbl.setTextFill(Paint.valueOf("white"));
+        lbl.setAlignment(Pos.CENTER);
+        lbl.setOnMouseClicked(mouseEvent ->
+        {
+            numberOfTasks++;
+            if(current!=null)
+            {
+                current.getStyleClass().remove("selected");
+            }
+
+
+            current = (Label) mouseEvent.getSource();
+            current.getStyleClass().add("selected");
+        });
+
+
+        Tasks.getChildren().add(lbl);
+    }
+
+    @FXML
+    protected void deleteTaskClick()
+    {
+        if(numberOfTasks  <= 0)
+        {
+            return;
+        }
+
+        if(current != null)
+        {
+            Tasks.getChildren().remove(current);
+            current = null;
+            numberOfTasks--;
+        }
+    }
+
 
     @FXML
     protected void getPreviousMonth()

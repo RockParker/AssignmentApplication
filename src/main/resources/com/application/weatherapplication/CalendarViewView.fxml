@@ -3,7 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane prefHeight="400.0" prefWidth="600.0" stylesheets="@CalendarViewCSS.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.weatherapplication.CalendarViewController">
+<GridPane prefHeight="400.0" prefWidth="600.0" stylesheets="@CalendarViewCSS.css"
+          xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.application.weatherapplication.CalendarViewController"
+            fx:id="mainPane">
 
     <columnConstraints>
         <ColumnConstraints percentWidth="5" />
@@ -39,9 +42,24 @@
         </VBox>
     </VBox>
 
-    <VBox fx:id="Tasks" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3"
+    <VBox fx:id="taskHost" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3" prefHeight="${mainPane.height}"
             styleClass="task-vbox">
+        <HBox alignment="TOP_CENTER">
+        <Button styleClass="task-button" fx:id="newTask" onAction="#newTaskClick">&#10133;</Button>
+        <Button styleClass="task-button" fx:id="deleteTask" onAction="#deleteTaskClick">&#10134;</Button>
+        </HBox>
 
+        <ScrollPane VBox.vgrow="SOMETIMES" styleClass="task-scroll-pane" >
+        <VBox fx:id="Tasks" styleClass="task-vbox" alignment="TOP_CENTER">
+
+
+        </VBox>
+        </ScrollPane>
+        <VBox fx:id="selectedTaskViewer" alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS" maxHeight="300" minHeight="250" styleClass="selected-task-view"
+         >
+
+
+        </VBox>
     </VBox>
 
 </GridPane>
