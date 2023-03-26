@@ -57,9 +57,9 @@
         </ScrollPane>
         <VBox fx:id="selectedTaskViewer"  alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS"
               maxHeight="300" minHeight="300" styleClass="selected-task-view">
-            <TextField fx:id="lblTitle">Title: </TextField>
-            <TextField fx:id="lblDate">Date: </TextField>
-            <TextArea fx:id="lblDesc" VBox.vgrow="ALWAYS" >Description: </TextArea>
+            <TextField fx:id="lblTitle" onKeyPressed="#textUpdated" >Title: </TextField>
+            <TextField fx:id="lblDate" onKeyPressed="#textUpdated" >Date: </TextField>
+            <TextArea fx:id="lblDesc" VBox.vgrow="ALWAYS" onKeyPressed="#textUpdated">Description: </TextArea>
         </VBox>
     </VBox>
 

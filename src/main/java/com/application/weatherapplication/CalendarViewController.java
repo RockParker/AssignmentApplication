@@ -3,13 +3,12 @@ package com.application.weatherapplication;
 import com.application.dataobjects.Forecast;
 import com.application.dataobjects.IDataProvider;
 import com.application.dataobjects.TaskObject;
-import javafx.concurrent.Task;
+import javafx.animation.KeyValue;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
@@ -41,6 +40,8 @@ public class CalendarViewController implements IDataProvider
     @FXML
     private TextArea lblDesc;
 
+    private Tooltip ttp = new Tooltip("Use Enter to Save All the Data");
+
 
     public void initialize()
     {
@@ -59,6 +60,12 @@ public class CalendarViewController implements IDataProvider
         generateCalendar();
 
         loadTasks(selectedDay.getId());
+
+
+        lblTitle.setTooltip(ttp);
+        lblDate.setTooltip(ttp);
+        lblDesc.setTooltip(ttp);
+
     }
 
     @Override
@@ -74,6 +81,20 @@ public class CalendarViewController implements IDataProvider
         //now we want to store the list into a file
 
         FileHandler.SaveToJson(tasks);
+    }
+
+    @FXML
+    public void textUpdated (KeyEvent e)
+    {
+        if(e.getCode() == KeyCode.ENTER)
+        {
+            currentTO.setTitle(lblTitle.getText());
+            currentTO.setDate(lblDate.getText());
+            currentTO.setDescription(lblDesc.getText());
+
+            currentLabel.setText(currentTO.getTitle());
+
+        }
     }
 
     private void calendarButtonClick(Button sender)
