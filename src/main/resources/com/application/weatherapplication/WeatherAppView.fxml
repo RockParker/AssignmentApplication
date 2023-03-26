@@ -30,7 +30,7 @@
 
     <!-- This is where the content of the window starts-->
     <VBox styleClass="main-menu" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2"
-        fx:id="buttonHost">
+        fx:id="buttonHost" alignment="CENTER">
 
 
         <Label fx:id="MenuLabel" text="This is a label" />

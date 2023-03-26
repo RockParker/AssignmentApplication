@@ -30,7 +30,7 @@ public class WeatherAppController
 
     private Pane weatherView, calendarView;
 
-    private IDataProvider weatherViewController, CalendarViewController;
+    private IDataProvider weatherViewController, calendarViewController;
 
     private Forecast forecast;
 
@@ -42,7 +42,11 @@ public class WeatherAppController
             var loader = new FXMLLoader(getClass().getResource("WeatherViewView.fxml"));
             weatherView = loader.load();
             weatherViewController = loader.getController();
-            calendarView = FXMLLoader.load(getClass().getResource("CalendarViewView.fxml"));
+
+            loader = new FXMLLoader(getClass().getResource("CalendarViewView.fxml"));
+            calendarView = loader.load();
+            calendarViewController = loader.getController();
+
 
 
             update(weatherViewController);
@@ -58,6 +62,11 @@ public class WeatherAppController
 
         setContent(weatherView);
 
+    }
+
+    public void closing()
+    {
+        calendarViewController.closing();
     }
 
     private void setContent(Pane pane)

@@ -1,83 +1,187 @@
 package com.application.weatherapplication;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.application.dataobjects.Forecast;
+import com.application.dataobjects.IDataProvider;
+import com.application.dataobjects.TaskObject;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class CalendarViewController
+public class CalendarViewController implements IDataProvider
 {
 
-    private final int daysAcross = 7;
-    private final int weeksDown = 6;
-    @FXML
-    private VBox vCalendar;
-    @FXML
-    private VBox vCalendarHost;
-    @FXML
-    private VBox Tasks;
-
-    private Label current;
-
-    @FXML
-    private Button previousMonth, nextMonth, currentMonth;
-    private int currentDay, numberOfTasks = 0;
-
+    private final int daysAcross = 7, weeksDown = 6;
+    private Label currentLabel, previousLabel;
+    private TaskObject currentTO, previousTO;
+    private int currentDay,currentMonth, numberOfTasks = 0;
     private Calendar cal;
+    private String date;
+    private Button selectedDay;
+    private ArrayList<TaskObject> tasks;
+
+
+    @FXML
+    private VBox vCalendar, Tasks;
+    @FXML
+    private Button previousMonth, nextMonth, monthShowing;
+    @FXML
+    private TextField lblTitle, lblDate;
+    @FXML
+    private TextArea lblDesc;
+
 
     public void initialize()
     {
         cal = Calendar.getInstance();
 
-        currentDay = cal.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+        currentDay = cal.get(Calendar.DAY_OF_MONTH);
+        currentMonth = cal.get(Calendar.MONTH);
+
+        tasks = FileHandler.ReadFromJson();
+        if(tasks == null)
+        {
+            tasks = new ArrayList<>();
+            System.out.println("null list");
+        }
 
         generateCalendar();
+
+        loadTasks(selectedDay.getId());
     }
 
-
-    private void calendarButtonClick()
+    @Override
+    public void closing()
     {
+        //here I want to save the tasks from the calendar into a file that can be loaded later.
+        if(currentTO!= null)
+        {
+            currentTO.setTitle(lblTitle.getText());
+            currentTO.setDate(lblDate.getText());
+            currentTO.setDescription(lblDesc.getText());
+        }
+        //now we want to store the list into a file
+
+        FileHandler.SaveToJson(tasks);
+    }
+
+    private void calendarButtonClick(Button sender)
+    {
+        if(selectedDay != null)
+        {
+            selectedDay.getStyleClass().remove("selected-calendar");
+        }
+
+        selectedDay = sender;
+        selectedDay.getStyleClass().add("selected-calendar");
+
+        loadTasks(selectedDay.getId());
 
         //do stuff here
         //this will display the information for the tasks on that day?
         // or maybe will just scroll the window to that task. and the window will just always show a certain number of tasks?
     }
 
+    public void loadAllTasks()
+    {
+        Tasks.getChildren().clear();
+        for(TaskObject obj : tasks)
+        {
+            obj.setLabel(createLabel(obj.getTitle(), obj));
+            Tasks.getChildren().add(obj.getLabel());
+        }
+    }
+
+    public void loadTasks(String buttonId)
+    {
+        Tasks.getChildren().clear();
+
+        for(TaskObject obj : tasks)
+        {
+            var id = obj.getButtonID();
+
+            if(id.equals(buttonId))
+            {
+                obj.setLabel(createLabel(obj.getTitle(), obj));
+                Tasks.getChildren().add(obj.getLabel());
+            }
+        }
+    }
 
     @FXML
     protected void newTaskClick()
     {
-        var lbl = new Label("Task Added");
+        TaskObject to = new TaskObject();
+        to.setButtonID(selectedDay.getId());
+        to.setDate(selectedDay.getId());
+
+        var lbl = createLabel("New Task", to);
+
+
+        to.setTitle(lbl.getText());
+        to.setDate("");
+        to.setButtonID(selectedDay.getId());
+        to.setDescription("");
+        to.setLabel(lbl);
+        tasks.add(to);
+
+        Tasks.getChildren().add(lbl);
+    }
+
+    private Label createLabel(String title, TaskObject to)
+    {
+        var lbl = new Label(title);
         lbl.setTextFill(Paint.valueOf("white"));
         lbl.setAlignment(Pos.CENTER);
         lbl.setOnMouseClicked(mouseEvent ->
         {
             numberOfTasks++;
-            if(current!=null)
+            if(currentLabel!=null)
             {
-                current.getStyleClass().remove("selected");
+                currentLabel.getStyleClass().remove("selected");
+                previousLabel = currentLabel;
+                previousTO = currentTO;
             }
 
+            currentTO = to;
+            currentLabel = (Label) mouseEvent.getSource();
+            currentLabel.getStyleClass().add("selected");
 
-            current = (Label) mouseEvent.getSource();
-            current.getStyleClass().add("selected");
+            loadTaskInfo();
         });
 
+        return lbl;
+    }
+    private void loadTaskInfo()
+    {
+        if(previousLabel != null)
+        {
+            previousTO.setTitle(lblTitle.getText());
+            previousTO.setDate(lblDate.getText());
+            previousTO.setDescription(lblDesc.getText());
 
-        Tasks.getChildren().add(lbl);
+            previousLabel.setText(previousTO.getTitle());
+            if(previousLabel.getText() == null)
+            {
+                previousLabel.setText("No Title Given");
+            }
+
+        }
+
+        lblTitle.setText(currentTO.getTitle());
+        lblDate.setText(currentTO.getDate());
+        lblDesc.setText(currentTO.getDescription());
     }
 
     @FXML
@@ -88,14 +192,20 @@ public class CalendarViewController
             return;
         }
 
-        if(current != null)
+        if(currentLabel != null)
         {
-            Tasks.getChildren().remove(current);
-            current = null;
+            Tasks.getChildren().remove(currentLabel);
+            currentLabel = null;
             numberOfTasks--;
+
+            tasks.remove(currentTO);
+            currentTO = null;
+
+
+            previousLabel = null;
+            previousTO = null;
         }
     }
-
 
     @FXML
     protected void getPreviousMonth()
@@ -113,14 +223,11 @@ public class CalendarViewController
         generateCalendar();
     }
 
-    ///may be worth generating the whole year at once, and then just setting the
-    ///children of the VBox to the 7 HBox starting from the 1st of the month.
-
     private void generateCalendar()
     {
         vCalendar.getChildren().clear();
 
-        currentMonth.setText(cal.get(Calendar.YEAR) +" / "+ (cal.get(Calendar.MONTH) + 1));
+        monthShowing.setText(cal.get(Calendar.YEAR) +" / "+ (cal.get(Calendar.MONTH) + 1));
 
         /*
           this part gets the previous month, and its number of days
@@ -140,7 +247,6 @@ public class CalendarViewController
         /*
           gets the number of days to represent from the previous month, before starting this month
          */
-        var currentDay = cal.get(Calendar.DAY_OF_MONTH);
         var weekday = cal.get(Calendar.DAY_OF_WEEK);
 
         var offset = weekday-(currentDay % 7);
@@ -162,7 +268,7 @@ public class CalendarViewController
             //id should be YearMonthDay
             Button b = new Button();
             b.getStyleClass().add("calendar-button");
-            b.setOnAction(actionEvent -> calendarButtonClick());
+            b.setOnAction(actionEvent -> calendarButtonClick(b));
 
             if(pastDate)
             {
@@ -185,6 +291,14 @@ public class CalendarViewController
                 }
                 continue;
             }
+
+            if(day == currentDay && cal.get(Calendar.MONTH) == currentMonth)
+            {
+                b.getStyleClass().add("today-button");
+                b.getStyleClass().add("selected-calendar");
+                selectedDay = b;
+            }
+
 
 
             b.setText(String.valueOf(day));
@@ -220,4 +334,7 @@ public class CalendarViewController
             }
         }
     }
+
+    @Override
+    public void update(Forecast forecast){}
 }

@@ -23,7 +23,7 @@
         <HBox alignment="CENTER" styleClass="month-button-host">
             <!-- These buttons are the different months -->
             <Button fx:id="previousMonth" styleClass="month-buttons" onAction="#getPreviousMonth" text="previous"/>
-            <Button fx:id="currentMonth" styleClass="month-buttons"/>
+            <Button fx:id="monthShowing" styleClass="month-buttons"/>
             <Button fx:id="nextMonth" styleClass="month-buttons" onAction="#getNextMonth" text="next"/>
         </HBox>
         <HBox spacing="5" alignment="CENTER">
@@ -46,19 +46,20 @@
             styleClass="task-vbox">
         <HBox alignment="TOP_CENTER">
         <Button styleClass="task-button" fx:id="newTask" onAction="#newTaskClick">&#10133;</Button>
-        <Button styleClass="task-button" fx:id="deleteTask" onAction="#deleteTaskClick">&#10134;</Button>
+        <Button styleClass="task-button" fx:id="deleteTask" onAction="#deleteTaskClick">&#128465;</Button>
         </HBox>
 
-        <ScrollPane VBox.vgrow="SOMETIMES" styleClass="task-scroll-pane" >
-        <VBox fx:id="Tasks" styleClass="task-vbox" alignment="TOP_CENTER">
+        <ScrollPane VBox.vgrow="SOMETIMES" stylesheets="@ScrollPaneCSS.css" >
+        <VBox fx:id="Tasks" alignment="TOP_CENTER">
 
 
         </VBox>
         </ScrollPane>
-        <VBox fx:id="selectedTaskViewer" alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS" maxHeight="300" minHeight="250" styleClass="selected-task-view"
-         >
-
-
+        <VBox fx:id="selectedTaskViewer"  alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS"
+              maxHeight="300" minHeight="300" styleClass="selected-task-view">
+            <TextField fx:id="lblTitle">Title: </TextField>
+            <TextField fx:id="lblDate">Date: </TextField>
+            <TextArea fx:id="lblDesc" VBox.vgrow="ALWAYS" >Description: </TextArea>
         </VBox>
     </VBox>
 

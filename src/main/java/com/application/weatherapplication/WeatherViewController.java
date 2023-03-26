@@ -156,4 +156,6 @@ public class WeatherViewController implements IDataProvider {
             return ret;
         }
 
+        @Override
+        public void closing(){};
 }

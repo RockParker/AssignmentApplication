@@ -23,7 +23,7 @@
 
 .calendar-button:hover
 {
-    -fx-background-color: #222;
+
     -fx-border-color: #FFF;
 }
 
@@ -35,6 +35,11 @@
 .out-of-range-button
 {
     -fx-background-color: #222;
+}
+
+.selected-calendar
+{
+    -fx-border-color:#a955d0;
 }
 
 
@@ -76,14 +81,6 @@
 
 }
 
-.task-scroll-pane > .viewport
-{
-    -fx-background-color:transparent;
-}
-.task-scroll-pane
-{
-    -fx-background-color:transparent;
-}
 
 .task-button
 {
@@ -97,11 +94,11 @@
 {
     -fx-background-color:#4e4376;
 }
+
 .task-button:pressed
 {
-    -fx-border-width:2px;
+    -fx-background-color:#554f8a;
 }
-
 .selected
 {
     -fx-background-color:black;
@@ -109,6 +106,12 @@
 
 .selected-task-view
 {
+    -fx-background-color:transparent;
     -fx-border-width:2px;
     -fx-border-color:white;
+}
+
+.today-button
+{
+    -fx-background-color:#7925a0;
 }

@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.beans.EventHandler;
 import java.io.IOException;
 
 public class WeatherApplication extends Application {
@@ -46,7 +48,9 @@ public class WeatherApplication extends Application {
 
         //making sure that the information loads
         this.forecast = getDataObject();
-       // System.out.println(forecast);
+
+
+        stage.setOnCloseRequest(event -> {controller.closing(); System.exit(0);});
 
     }
 
@@ -75,6 +79,7 @@ public class WeatherApplication extends Application {
         { e.printStackTrace();}
 
         icon = trayIcon;
+
     }
 
     private final ActionListener closer = e -> System.exit(0);
@@ -82,13 +87,15 @@ public class WeatherApplication extends Application {
     private final ActionListener focus = e -> {
 
     };
+
+
     public static void main(String[] args) {
         launch();
     }
 
 
     /**
-     * In the future, this will not be Object
+     *
      */
     public static Forecast getDataObject()
     {
@@ -98,9 +105,5 @@ public class WeatherApplication extends Application {
         return DataConversion.interpretData(qu);
     }
 
-
-    /*
-    * Data Management of the Weather information
-    */
 
 }

@@ -8,9 +8,7 @@ import com.application.weatherapplication.WeatherApplication;
  */
 public interface IDataProvider
 {
-    //public void setForecast(Forecast forecast);
-
-//    public void setHost(WeatherApplication application);
 
     public void update(Forecast forecast);
+    public void closing();
 }

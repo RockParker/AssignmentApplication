@@ -6,13 +6,18 @@
 
     /* -- Here are the colors for the main button control -- */
     menu-button-host: #ccdbfd;
-    menu-button-color: #abc4ff;
-    menu-button-hover: #bbb;
-    menu-button-click: #fff;
+    menu-button-color: transparent;
+    menu-button-hover: transparent;
+    menu-button-click: transparent;
+
+
+    highlight-color:#999;
 
     /* -- Here be monsters -- */
     view-host-background: #ddddff;
 
+
+    main-background-gradient: linear-gradient(#2b5876,#4e4376);
 
 }
 
@@ -20,28 +25,39 @@
 {
     -fx-font-size:15px;
     -fx-background-color:menu-button-color;
+    -fx-text-fill:white;
 
+    -fx-border-width:2px;
+    -fx-border-color:black;
 }
 .menu-button:hover
 {
     -fx-font-size:16px;
     -fx-background-color:menu-button-hover;
     -fx-cursor:Hand;
+
+    -fx-border-color:highlight-color;
+    -fx-text-fill:highlight-color;
 }
 .menu-button:pressed
 {
     -fx-font-size:16px;
     -fx-background-color:menu-button-click;
+
+    -fx-border-color:white;
 }
 
 .main-menu
 {
-    -fx-background-color:linear-gradient(#2b5876,#4e4376);
+    -fx-background-color:main-background-gradient;
     -fx-spacing:10px;
     -fx-padding:10px;
     -fx-max-width:130px;
+
+    -fx-border-width:0px 2px 0px 0px;
+    -fx-border-color:white;
 }
 .content-pane
 {
--fx-background-color:linear-gradient(#2b5876,#4e4376);
+    -fx-background-color:main-background-gradient;
 }
