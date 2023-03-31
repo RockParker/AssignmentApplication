@@ -48,7 +48,6 @@ public class WeatherAppController
             calendarViewController = loader.getController();
 
 
-
             update(weatherViewController);
 
 

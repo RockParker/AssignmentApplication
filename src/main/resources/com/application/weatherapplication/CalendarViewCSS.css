@@ -1,3 +1,7 @@
+.calendar-hbox
+{
+}
+
 
 .calendar-button
 {
@@ -17,9 +21,6 @@
     -fx-min-height:8em;
 }
 
-.calendar-hbox
-{
-}
 
 .calendar-button:hover
 {

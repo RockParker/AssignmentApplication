@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -251,31 +252,32 @@ public class CalendarViewController implements IDataProvider
         monthShowing.setText(cal.get(Calendar.YEAR) +" / "+ (cal.get(Calendar.MONTH) + 1));
 
         /*
-          this part gets the previous month, and its number of days
-         */
-
-        cal.add(Calendar.MONTH, -1);
-        var prevMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-        /*
-          sets the month back to the current month, then gets the number of days in this month
-         */
-
-        cal.add(Calendar.MONTH, 1);
-        var currentMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-
-        /*
           gets the number of days to represent from the previous month, before starting this month
          */
         var weekday = cal.get(Calendar.DAY_OF_WEEK);
 
-        var offset = weekday-(currentDay % 7);
+
+        var dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        var shift = (dayOfMonth % 7);
+        var offset = weekday - shift;
 
         if(offset < 1)
         {
             offset += 7;
         }
+
+        /*
+          this part gets the previous month, and its number of days
+         */
+        cal.add(Calendar.MONTH, -1);
+        var prevMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+
+        /*
+          sets the month back to the current month, then gets the number of days in this month
+         */
+        cal.add(Calendar.MONTH, 1);
+        var currentMonthDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         var currentYear = cal.get(Calendar.YEAR);
         var calCurrentMonth = cal.get(Calendar.MONTH);
@@ -336,6 +338,7 @@ public class CalendarViewController implements IDataProvider
         }
         cal.add(Calendar.MONTH, -1);
 
+        //adding the buttons to the view
         int counter = 0;
         HBox box = new HBox();
         box.getStyleClass().add("calendar-hbox");
