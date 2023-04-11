@@ -1,22 +1,23 @@
 package com.application.weatherapplication;
 
+import com.application.api.DataConversion;
+import com.application.api.Querying;
 import com.application.dataobjects.Forecast;
 import com.application.dataobjects.IDataProvider;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
-import java.awt.*;
-import java.io.File;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class WeatherViewController implements IDataProvider {
 
+    @FXML
+    private Button RefreshWeather;
     @FXML
     private Label cityname,localtime;
 
@@ -49,9 +50,9 @@ public class WeatherViewController implements IDataProvider {
 
 
     @FXML
-    public void initialize() {
-        //cityname.setText("Changed The Icon in the controller class");
-
+    public void initialize()
+    {
+        refreshWeather();
     }
 
 
@@ -75,7 +76,11 @@ public class WeatherViewController implements IDataProvider {
                 {lowtemp01, lowtemp02, lowtemp03, lowtemp04};
         //do stuff with the forecast
         this.forecast = forecast;
-        localtime.setText("Update:" +forecast.getCurrent().getTime());
+
+        var datetime = LocalDateTime.now();
+
+        cityname.setText(forecast.getName());
+        localtime.setText("Last Updated:" + datetime.getHour() + ":" + datetime.getMinute());
 
         if (forecast != null) {
             var url = forecast.getCurrent().getIconURL();
@@ -121,7 +126,8 @@ public class WeatherViewController implements IDataProvider {
         }
 
     }
-        private String getWeekday ( int num){
+
+    private String getWeekday ( int num){
             String ret = "";
             switch (num) {
                 case 1: {
@@ -154,6 +160,16 @@ public class WeatherViewController implements IDataProvider {
                 }
             }
             return ret;
+        }
+
+
+        @FXML
+        private void refreshWeather()
+        {
+            var apiResult = Querying.getWeatherInformation(Querying.QueryType.FORECAST_WEEK);
+            var forecast = DataConversion.interpretData(apiResult);
+
+            update(forecast);
         }
 
         @Override

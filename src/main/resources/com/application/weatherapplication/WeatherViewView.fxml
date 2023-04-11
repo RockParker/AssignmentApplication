@@ -8,9 +8,10 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="736.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.weatherapplication.WeatherViewController"
-stylesheets="@WeatherViewCSS.css" styleClass="main-pane">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="597.0" prefWidth="736.0" styleClass="main-pane" stylesheets="@WeatherViewCSS.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.weatherapplication.WeatherViewController">
    <children>
+
+      <Button fx:id="RefreshWeather" onAction="#refreshWeather" styleClass="update-button">🗘</Button>
 
       <Label fx:id="cityname" contentDisplay="CENTER" graphicTextGap="2.0" layoutX="28.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" text="OTTAWA CITY" textFill="WHITE">
          <font>
@@ -192,5 +193,6 @@ stylesheets="@WeatherViewCSS.css" styleClass="main-pane">
       <Label fx:id="lowtemp04" layoutX="500.0" layoutY="320.0" text="N/A" textFill="#000000" />
       <Label fx:id="lowtemp05" layoutX="500.0" layoutY="350.0" text="N/A" textFill="#000000" />
       <Label fx:id="lowtemp06" layoutX="500.0" layoutY="380.0" text="N/A" textFill="#000000" />
+
    </children>
 </Pane>

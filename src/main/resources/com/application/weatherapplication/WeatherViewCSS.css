@@ -2,3 +2,26 @@
 {
 -fx-background-color: transparent;
 }
+
+
+.update-button
+{
+    -fx-background-color:transparent;
+
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+
+    -fx-text-fill:white;
+}
+
+
+.update-button:hover
+{
+    -fx-background-color: gray;
+}
+
+
+.update-button:pressed
+{
+    -fx-background-color: white;
+}
