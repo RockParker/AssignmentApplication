@@ -10,14 +10,14 @@ public class Querying
     //this is bad practice, but it will work for now
     private static final String API_KEY = "685562943fa340ba9f1162637232001";
 
-    private static final String baseUrl = "https://api.weatherapi.com/v1/";
+    private static final String baseUrl = "https://api.weatherapi.com/v1/forecast.json?key=";
 
     /**
      * Attempting to use auto:ip to make the api figure out where the device is
      */
 
-    private static final String forecastQuery_24hr = baseUrl + "forecast.json?key=" + API_KEY + "&q=auto:ip&days=1";
-    private static final String forecastQuery_Week = baseUrl + "forecast.json?key=" + API_KEY + "&q=auto:ip&days=7";
+    private static final String forecastQuery_24hr = baseUrl + API_KEY + "&q=auto:ip&days=1";
+    private static final String forecastQuery_Week = baseUrl  + API_KEY + "&q=auto:ip&days=7";
 
     public enum QueryType
     {
@@ -45,6 +45,42 @@ public class Querying
             }
         }
 
+        ret = queryAPI(query);
+
+        return ret;
+    }
+
+    public static String getWeatherInformation(QueryType qType, String postalCode)
+    {
+        //baseUrl  + API_KEY + "&q=auto:ip&days=7";
+
+        String ret = "";
+        String query;
+
+        switch (qType)
+        {
+            case FORECAST_WEEK, CURRENT:
+            {
+                query = baseUrl  + API_KEY + "&q="+postalCode+"&days=7";
+                break;
+            }
+
+            default:
+            {
+                query = baseUrl  + API_KEY + "&q="+postalCode+"&days=1";
+                break;
+            }
+        }
+
+        ret = queryAPI(query);
+
+        return ret;
+    }
+
+
+    private static String queryAPI (String query)
+    {
+        String ret = "";
 
         try
         {
@@ -61,9 +97,7 @@ public class Querying
             e.printStackTrace();
         }
 
-
         return ret;
     }
-
 
 }

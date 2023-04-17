@@ -193,6 +193,7 @@
       <Label fx:id="lowtemp04" layoutX="500.0" layoutY="320.0" text="N/A" textFill="#000000" />
       <Label fx:id="lowtemp05" layoutX="500.0" layoutY="350.0" text="N/A" textFill="#000000" />
       <Label fx:id="lowtemp06" layoutX="500.0" layoutY="380.0" text="N/A" textFill="#000000" />
+      <TextField fx:id="postalcode"  layoutX="447.0" layoutY="61.0" promptText="postal code (e.g. K2C)"></TextField>
 
    </children>
 </Pane>

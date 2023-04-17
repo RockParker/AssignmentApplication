@@ -7,6 +7,7 @@ import com.application.dataobjects.IDataProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -16,6 +17,8 @@ import java.util.Calendar;
 
 public class WeatherViewController implements IDataProvider {
 
+    @FXML
+    private TextField postalcode;
     @FXML
     private Button RefreshWeather;
     @FXML
@@ -58,6 +61,8 @@ public class WeatherViewController implements IDataProvider {
 
     @Override
     public void update(Forecast forecast) {
+
+        if(forecast == null)return;
 
         conditionImages = new ImageView[]
                 {conditionimage1, conditionimage2, conditionimage3,
@@ -166,10 +171,21 @@ public class WeatherViewController implements IDataProvider {
         @FXML
         private void refreshWeather()
         {
-            var apiResult = Querying.getWeatherInformation(Querying.QueryType.FORECAST_WEEK);
-            var forecast = DataConversion.interpretData(apiResult);
+            Forecast forecast1;
+            if(postalcode.getText().length() != 3)
+            {
+                var apiResult = Querying.getWeatherInformation(Querying.QueryType.FORECAST_WEEK);
+                forecast1 = DataConversion.interpretData(apiResult);
+            }
+            else
+            {
+                var apiResult = Querying.getWeatherInformation(Querying.QueryType.FORECAST_WEEK, postalcode.getText());
+                forecast1 = DataConversion.interpretData(apiResult);
+            }
 
-            update(forecast);
+
+
+            update(forecast1);
         }
 
         @Override
